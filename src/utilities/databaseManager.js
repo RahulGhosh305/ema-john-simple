@@ -1,3 +1,25 @@
+const addToDatabaseCart = (key, count) => {
+  const currentCart = getDatabaseCart();
+  currentCart[key] = count;
+  localStorage.setItem(getDataKey(), JSON.stringify(currentCart));
+}
+
+// push to local storage: a temporary place for database
+const getDatabaseCart = () => {
+  const dataKey = getDataKey();
+  const data = localStorage.getItem(dataKey) || "{}";
+  return JSON.parse(data);
+}
+
+
+
+const getDataKey = () => {
+  const userId = getUser();
+  return `emaJohn/carts/${userId}`
+}
+
+
+
 const getUser = () => {
     const existingUser = sessionStorage.getItem('userId');
     if (existingUser) {
@@ -9,24 +31,6 @@ const getUser = () => {
     }
 }
 
-
-const getDataKey = () => {
-    const userId = getUser();
-    return `emaJohn/carts/${userId}`
-}
-
-// push to local storage: a temporary place for database
-const getDatabaseCart = () => {
-    const dataKey = getDataKey();
-    const data = localStorage.getItem(dataKey) || "{}";
-    return JSON.parse(data);
-}
-
-const addToDatabaseCart = (key, count) => {
-    const currentCart = getDatabaseCart();
-    currentCart[key] = count;
-    localStorage.setItem(getDataKey(), JSON.stringify(currentCart));
-}
 
 const removeFromDatabaseCart = key => {
     const currentCart = getDatabaseCart();

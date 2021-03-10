@@ -1,0 +1,9 @@
+.review-container{
+    display: flex;
+}
+.reviewProduct-container{
+    width: 60%;
+    margin-right: 20px;
+    border-right: 1px solid lightgray;
+    padding-left: 100px;
+}
